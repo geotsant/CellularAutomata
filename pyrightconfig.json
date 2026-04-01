@@ -1,0 +1,10 @@
+{
+  "venvPath": ".",
+  "venv": ".venv",
+  "include": [
+    "src"
+  ],
+  "pythonVersion": "3.10",
+  "reportMissingImports": true,
+  "typeCheckingMode": "basic"
+}
