@@ -4,11 +4,13 @@ A Python visualization tool for 1-Dimensional Cellular Automata, built with [py5
 
 This project explores the mathematical beauty of cellular automata, allowing you to generate, visualize, and export different rule sets in real-time. To learn more about the theory behind these patterns, check out [The Nature of Code](https://natureofcode.com/cellular-automata/) and the [Stanford Encyclopedia of Philosophy](https://plato.stanford.edu/entries/cellular-automata/supplement.html).
 
+
 ## Design Philosophy: High-Resolution Export
 
 This tool is specifically built with physical printing in mind. While the real-time window renders at a standard 350 x 495 resolution to maintain smooth performance, the script utilizes a hidden `Py5Graphics` buffer.
 
 This background canvas mirrors the main display at a much higher density (4x scale factor). When you save an image, the final PNG export is 1400 x 1980 pixels. This ensures that the discrete, pixel-art geometry of the cellular automata remains razor-sharp and professional when scaled up for physical media, completely avoiding blurriness.
+
 
 ## Installation & Setup
 
@@ -39,8 +41,9 @@ Windows:
 
 **4. Install the required libraries:**
 ```bash
-pip install py5
+pip install -r requirements.txt
 ```
+
 
 ## How to Run
 
@@ -53,6 +56,7 @@ Upon running, the terminal will prompt you for two inputs:
 
 - **Rule Number:** Choose a rule between 0 and 255 (defaults to 30).
 - **Scrolling:** Enter `y` or `n` to dictate whether the generation should scroll indefinitely or stop at the bottom of the screen.
+
 
 ## Interesting Rules
 
@@ -76,3 +80,19 @@ While the Py5 window is active, you can use the following keyboard controls:
 |-----|--------|
 | `Spacebar` | Pause / Resume the generation |
 | `S` | Save a high-resolution snapshot to your project folder (saved as `rule_[num]_[generation].png`) |
+
+
+## Troubleshooting
+
+### Virtual Environment Activation (Linux/Bash)
+If you are using a strict Bash setup (`set -u`) and the activation command fails, use the following instead:
+```bash
+set +u; source .venv/bin/activate; set -u
+```
+
+### Dependency Issues (Arch Linux)
+If py5 fails to find a Java Runtime, ensure you have the OpenJDK installed:
+
+```bash
+sudo pacman -S jre-openjdk
+```
