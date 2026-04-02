@@ -43,11 +43,30 @@ def draw():
 
 
 def generate_next(current_grid):
+    """Calculates the subsequent state of the 2D grid based on Conway's Game of Life rules.
+
+    This function implements a toroidal (wrap-around) grid, where cells on the edges
+    interact with cells on the opposite side. It evaluates each cell's survival or
+    birth by counting its eight immediate neighbors in a 3x3 Moore neighborhood.
+
+    Conway's Rules Applied:
+        1. Survival: A live cell with 2 or 3 live neighbors stays alive.
+        2. Birth: A dead cell with exactly 3 live neighbors becomes alive.
+        3. Death: All other live cells die (isolation or overpopulation), and
+           dead cells remain dead.
+
+    Args:
+        current_grid (list[list[int]]): A 2D list representing the current binary
+            state of the simulation (1 for alive, 0 for dead).
+
+    Returns:
+        list[list[int]]: A new 2D list containing the computed states for the
+            next generation.
+    """
     next_grid = [[0 for _ in range(cols)] for _ in range(rows)]
 
     for y in range(rows):
         for x in range(cols):
-            # Count live neighbors in a 3x3 area
             neighbors = 0
             for i in range(-1, 2):
                 for j in range(-1, 2):
@@ -87,7 +106,6 @@ def key_pressed():
 
 
 def save_high_res():
-    # Build the high-res buffer on demand to prevent frame rate drops
     print(f"Generating high-res snapshot for generation {generation}...")
 
     high_res = py5.create_graphics(py5.width * scale_factor, py5.height * scale_factor)
@@ -96,7 +114,6 @@ def save_high_res():
     high_res.no_stroke()
     high_res.fill(0)
 
-    # Scale and draw the current grid state
     for y in range(rows):
         for x in range(cols):
             if grid[y][x] == 1:

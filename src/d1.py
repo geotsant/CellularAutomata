@@ -76,6 +76,21 @@ def draw():
 
 
 def render_row_dual(row_cells, y_pos):
+    """Renders a single generation row to both the display window and the high-resolution buffer.
+
+    This function iterates through the state of each cell in the current row. If a cell
+    is active (1), it draws a corresponding rectangle on the standard Py5 canvas and
+    a scaled version on the hidden high-resolution Py5Graphics buffer for export.
+
+    Args:
+        row_cells (list[int]): A list of integers representing the binary state (0 or 1)
+            of each cell in the current generation.
+        y_pos (int): The vertical coordinate (row index) where the cells should
+            be rendered on the canvas.
+
+    Returns:
+        None: The function performs drawing operations and does not return a value.
+    """
     if high_res is None:
         return
 
@@ -104,6 +119,15 @@ def render_row_dual(row_cells, y_pos):
 
 
 def generate_next(current_cells):
+    """
+    Calculates the next state of the grid based on Conway's Rules.
+
+    Args:
+        current_grid (list): A 2D list representing the current generation.
+
+    Returns:
+        list: The 2D grid for the subsequent generation.
+    """
     n = len(current_cells)
     next_gen = [0] * n
 
