@@ -11,7 +11,7 @@ To learn more about the theory behind these patterns, check out [The Nature of C
 A visualization tool for 1-Dimensional Cellular Automata based on Wolfram's elementary rules. Each rule number (0–255) encodes a different binary lookup table that determines how each cell evolves from one row to the next, producing everything from simple repetitive patterns to complex, seemingly random behaviour. Read more on [Wolfram MathWorld](https://mathworld.wolfram.com/ElementaryCellularAutomaton.html).
 
 
-### Design Philosophy: High-Resolution Export
+### Design Philosophy
 
 This tool is specifically built with physical printing in mind. While the real-time window renders at a standard 350 x 495 resolution to maintain smooth performance, the script utilizes a hidden `Py5Graphics` buffer.
 
@@ -44,6 +44,40 @@ The grid uses a **toroidal topology** — cells wrap around all four edges, so n
 ### Design Philosophy
 
 The simulation runs on a 350 x 495 grid (close to A4 ratio) with a cell size of 2px, giving a 175 x 247 cell grid. A `Py5Graphics` buffer at 2x scale is used for high-resolution PNG exports, keeping the saved output crisp at 700 x 990 pixels.
+
+---
+
+## Installation & Setup
+
+It is recommended to run this project inside a Python virtual environment to manage dependencies. Follow these steps to get it running on your local machine (you might need to check [Link Text](#Troubleshooting)):
+
+**1. Clone the repository and navigate to it:**
+```bash
+git clone https://github.com/geotsant/CellularAutomata.git
+cd CellularAutomata
+```
+
+**2. Create a virtual environment:**
+```bash
+python -m venv .venv
+```
+
+**3. Activate the virtual environment:**
+
+Mac/Linux:
+```bash
+source .venv/bin/activate
+```
+
+Windows:
+```bash
+.venv\Scripts\activate
+```
+
+**4. Install the required libraries:**
+```bash
+pip install -r requirements.txt
+```
 
 ---
 
@@ -90,40 +124,6 @@ For Game of Life:
 
 ---
 
-## Installation & Setup
-
-It is recommended to run this project inside a Python virtual environment to manage dependencies. Follow these steps to get it running on your local machine:
-
-**1. Clone the repository and navigate to it:**
-```bash
-git clone https://github.com/geotsant/CellularAutomata.git
-cd CellularAutomata
-```
-
-**2. Create a virtual environment:**
-```bash
-python -m venv .venv
-```
-
-**3. Activate the virtual environment:**
-
-Mac/Linux:
-```bash
-source .venv/bin/activate
-```
-
-Windows:
-```bash
-.venv\Scripts\activate
-```
-
-**4. Install the required libraries:**
-```bash
-pip install -r requirements.txt
-```
-
----
-
 ## Troubleshooting
 
 ### Virtual Environment Activation (Linux/Bash)
@@ -138,3 +138,5 @@ If py5 fails to find a Java Runtime, ensure you have the OpenJDK installed:
 ```bash
 sudo pacman -S jre-openjdk
 ```
+### Technical Note on Scaling
+For enhanced output resolution, the scale_factor variable may be increased within the source files. Please be advised that higher values are significantly more resource-intensive. Unless your hardware configuration is optimized for high-density rendering, it is recommended to maintain the default settings to ensure visual stability and optimal performance.
